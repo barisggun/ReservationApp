@@ -22,6 +22,7 @@
   <ItemGroup>
     <Folder Include="Abstract\" />
     <Folder Include="EntityFramework\" />
+    <Folder Include="Migrations\" />
     <Folder Include="Repository\" />
   </ItemGroup>
 
