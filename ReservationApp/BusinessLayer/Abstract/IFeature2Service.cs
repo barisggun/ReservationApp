@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.Abstract
+namespace BusinessLayer.Abstract
 {
-    public interface IDestinationDal : IGenericDal<Destination>
+    public interface IFeature2Service : IGenericService<Feature2>
     {
     }
 }
