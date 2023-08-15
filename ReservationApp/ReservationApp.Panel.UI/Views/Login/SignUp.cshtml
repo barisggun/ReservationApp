@@ -1,59 +1,109 @@
-﻿
+﻿@model UserRegisterViewModel
+
 @{
     Layout = null;
 }
 
 <!DOCTYPE html>
-<html>
+<html lang="tr">
+
 <head>
-	<meta charset="utf-8">
-	<title>Trippex Kayıt Ekranı</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Invent Signup Form Responsive Widget Template | Home :: W3layouts</title>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+	<meta name="keywords"
+		  content="Invent Signup Form Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
 
-	<!-- LINEARICONS -->
-	<link rel="stylesheet" href="~/colorlib-regform-26/fonts/linearicons/style.css">
-
-	<!-- STYLE CSS -->
-	<link rel="stylesheet" href="~/colorlib-regform-26/css/style.css">
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- //Meta tag Keywords -->
+	<!--/Style-CSS -->
+	<link rel="stylesheet" href="~/web/css/style.css" type="text/css" media="all" />
+	<!--//Style-CSS -->
 </head>
 
 <body>
+	<!-- /login-section -->
+	<section class="w3l-login-6">
+		<div class="login-hny">
+			<div class="form-content">
+				<div class="form-right">
+					<div class="overlay">
+						<div class="grid-info-form">
+							<h5>Rezervasyon Uygulaması</h5>
+							<h3>Hesap oluştur</h3>
+							<p>
+								Birbirinden deneyimli rehberlerimiz eşliğinde İskandinav ülkelerinin soğuğunu, Akdeniz ülkelerinin sıcaklıüını, güzel ülkemizin Kapadokya'dan Sürmene'ye, Ölüdeniz'den Asos'a, Balkan turundan Mısır Çöllerine kadar aklınıza gelen her yere bir tık uzaktayız. Seyehatlerimize katılmak için hemen kayıt olun.
+							</p>
+							<a href="index.html" class="read-more-1 btn">Haydi başlayalım</a>
+						</div>
 
-	<div class="wrapper">
-		<div class="inner">
-			<img src="images/image-1.png" alt="" class="image-1">
-			<form action="">
-				<h3>Yeni hesap</h3>
-				<div class="form-holder">
-					<span class="lnr lnr-user"></span>
-					<input type="text" class="form-control" placeholder="Username">
+					</div>
 				</div>
-				<div class="form-holder">
-					<span class="lnr lnr-phone-handset"></span>
-					<input type="text" class="form-control" placeholder="Phone Number">
+				<div class="form-left">
+					<div class="middle">
+						<h4>Join Us</h4>
+						<p>Create Your Account, It's Free.</p>
+					</div>
+					<form method="post" class="signin-form">
+						<div class="form-input">
+							<label>Ad</label>
+							<input type="text" asp-for="Name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+						</div>
+						<div class="form-input">
+							<label>Soyad</label>
+							<input type="text" asp-for="Surname" />
+							<span asp-validation-for="Surname" class="text-danger"></span>
+						</div>
+						<div class="form-input">
+							<label>Kullanıcı adınız</label>
+							<input type="text" asp-for="Username" />
+							<span asp-validation-for="Username" class="text-danger"></span>
+						</div>
+						<div class="form-input">
+							<label>Email</label>
+							<input type="email" asp-for="Email" />
+							<span asp-validation-for="Email" class="text-danger"></span>
+						</div>
+						<div class="form-input">
+							<label>Şifre</label>
+							<input type="password" asp-for="Password" />
+							<span asp-validation-for="Password" class="text-danger"></span>
+						</div>
+						<div class="form-input">
+							<label>Şifre (tekrar) </label>
+							<input type="password" asp-for="ConfirmPassword" />
+							<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+						</div>
+						<div class="text-danger" asp-validation-summary="ModelOnly"></div>
+					@* 	<label class="container">
+							I agree to <a href="#">Conditions</a> of Use and <a href="#">Privacy</a>
+							<input type="checkbox">
+							<span class="checkmark"></span>
+						</label> *@
+						<button class="btn">Hesap oluştur</button>
+					</form>
+					<div class="copy-right text-center">
+						<p>
+							© @DateTime.Now.Year Invent Signup. All rights reserved | Design by
+							<a href="http://w3layouts.com/" target="_blank">W3layouts</a>
+						</p>
+					</div>
 				</div>
-				<div class="form-holder">
-					<span class="lnr lnr-envelope"></span>
-					<input type="text" class="form-control" placeholder="Mail">
-				</div>
-				<div class="form-holder">
-					<span class="lnr lnr-lock"></span>
-					<input type="password" class="form-control" placeholder="Password">
-				</div>
-				<div class="form-holder">
-					<span class="lnr lnr-lock"></span>
-					<input type="password" class="form-control" placeholder="Confirm Password">
-				</div>
-				<button>
-					<span>Register</span>
-				</button>
-			</form>
-			<img src="images/image-2.png" alt="" class="image-2">
+
+			</div>
+
 		</div>
+	</section>
+	<!-- //login-section -->
+</body>
 
-	</div>
-
-	<script src="~/colorlib-regform-26/js/jquery-3.3.1.min.js"></script>
-	<script src="~/colorlib-regform-26/js/main.js"></script>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
