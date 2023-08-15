@@ -11,7 +11,7 @@ namespace EntityLayer.Concrete
     {
         [Key]
         public int ReservationID { get; set; }
-        public string AppUserId  { get; set; }
+        public int AppUserId  { get; set; }
         public AppUser AppUser  { get; set; }
         public string PersonCount { get; set; }
         public string Destination { get; set; }

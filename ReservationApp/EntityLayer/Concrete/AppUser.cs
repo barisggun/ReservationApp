@@ -13,6 +13,6 @@ namespace EntityLayer.Concrete
         public string? ImageUrl { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public 
+        public List<Reservation> Reservations { get; set; } 
     }
 }
