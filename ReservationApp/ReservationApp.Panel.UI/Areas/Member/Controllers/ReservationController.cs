@@ -28,8 +28,8 @@ namespace ReservationApp.Panel.UI.Areas.Member.Controllers
             List<SelectListItem> values = (from x in dm.TGetList()
                                            select new SelectListItem
                                            {
-                                            Text=x.City,
-                                            Value=x.DestinationID.ToString()
+                                               Text = x.City,
+                                               Value = x.DestinationID.ToString()
                                            }).ToList();
             ViewBag.v = values;
             return View();
@@ -38,6 +38,7 @@ namespace ReservationApp.Panel.UI.Areas.Member.Controllers
         [HttpPost]
         public IActionResult NewReservation(Reservation p)
         {
+            p.Status = "Onay bekliyor";
             p.AppUserId = 5;
             rm.TAdd(p);
 
