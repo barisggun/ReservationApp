@@ -35,8 +35,8 @@ namespace ReservationApp.Panel.UI.Areas.Member.Controllers
         public async Task<IActionResult> MyApprovalReservation()
         {
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
-            
-            return View();
+            var valuesList= rm.GetListApprovalReservation(values.Id);
+            return View(valuesList);
         }
         public IActionResult NewReservation()
         {
