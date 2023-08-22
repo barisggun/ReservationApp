@@ -46,7 +46,15 @@ namespace ReservationApp.Panel.UI.Areas.Member.Controllers
 
             user.Name = p.Name;
             user.Surname = p.Surname;
-            user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, p.Password);
+            if (p.Password != p.ConfirmPassword)
+            {
+                ViewBag.ErrorMessage = "Şifreler Uyumlu Değil!";
+                return View(p);
+            }
+            if (!string.IsNullOrEmpty(p.Password))
+            {
+                user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, p.Password);
+            }
             var result = await _userManager.UpdateAsync(user);
             if (result.Succeeded)
             {
