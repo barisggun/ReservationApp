@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
@@ -10,11 +11,16 @@ namespace ReservationApp.Panel.UI.Areas.Admin.Controllers
     [AllowAnonymous]
     public class DestinationController : Controller
     {
-        DestinationManager dm = new DestinationManager(new EfDestinationDal());
+        private readonly IDestinationService _destinationService;
+
+        public DestinationController(IDestinationService destinationService)
+        {
+            _destinationService = destinationService;
+        }
 
         public IActionResult Index()
         {
-            var values = dm.TGetList();
+            var values = _destinationService.TGetList();
             return View(values);
         }
 
@@ -25,26 +31,26 @@ namespace ReservationApp.Panel.UI.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult AddDestination(Destination destination)
         {
-            dm.TAdd(destination);
+            _destinationService.TAdd(destination);
             return RedirectToAction("Index", "Destination", new { area = "Admin" });
         }
 
         public IActionResult DeleteDestination(int id)
         {
-            var values = dm.TGetById(id);
-            dm.TDelete(values);
+            var values = _destinationService.TGetById(id);
+            _destinationService.TDelete(values);
             return RedirectToAction("Index", "Destination", new { area = "Admin" });
         }
         public IActionResult UpdateDestination(int id) 
         {
-            var values = dm.TGetById(id);
+            var values = _destinationService.TGetById(id);
             return View(values);
         }
 
         [HttpPost]
         public IActionResult UpdateDestination(Destination destination)
         {
-            dm.TUpdate(destination);
+            _destinationService.TUpdate(destination);
             return RedirectToAction("Index", "Destination", new { area = "Admin" });
         }
     }

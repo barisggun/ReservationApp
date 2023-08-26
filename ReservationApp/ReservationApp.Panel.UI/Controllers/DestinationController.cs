@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
@@ -9,17 +10,22 @@ namespace ReservationApp.Panel.UI.Controllers
     [AllowAnonymous]
     public class DestinationController : Controller
     {
-        DestinationManager destinationManager = new DestinationManager(new EfDestinationDal());
+        private readonly IDestinationService _destinationService;
+
+        public DestinationController(IDestinationService destinationService)
+        {
+            _destinationService = destinationService;
+        }
 
         public IActionResult Index()
         {
-            var values = destinationManager.TGetList();
+            var values = _destinationService.TGetList();
             return View(values);
         }
 
         public IActionResult DestinationDetails(int id)
         {
-            var values = destinationManager.TGetById(id);   
+            var values = _destinationService.TGetById(id);   
             return View(values);
         }
 
