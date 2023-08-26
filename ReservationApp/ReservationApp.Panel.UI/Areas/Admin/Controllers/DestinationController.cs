@@ -26,25 +26,26 @@ namespace ReservationApp.Panel.UI.Areas.Admin.Controllers
         public IActionResult AddDestination(Destination destination)
         {
             dm.TAdd(destination);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Destination", new { area = "Admin" });
         }
 
         public IActionResult DeleteDestination(int id)
         {
             var values = dm.TGetById(id);
             dm.TDelete(values);
-            return View("Index","Destination");
+            return RedirectToAction("Index", "Destination", new { area = "Admin" });
         }
         public IActionResult UpdateDestination(int id) 
         {
             var values = dm.TGetById(id);
             return View(values);
         }
+
         [HttpPost]
         public IActionResult UpdateDestination(Destination destination)
         {
             dm.TUpdate(destination);
-            return View("Index");
+            return RedirectToAction("Index", "Destination", new { area = "Admin" });
         }
     }
 }
