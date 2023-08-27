@@ -1,5 +1,6 @@
 using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
+using BusinessLayer.Container;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using ReservationApp.Panel.UI.Models;
 using System.Net;
+using System.Xml.Linq;
 
 namespace ReservationApp.Panel.UI
 {
@@ -23,15 +25,12 @@ namespace ReservationApp.Panel.UI
 			builder.Services.AddDbContext<Context>();
 			builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
 
-			builder.Services.AddScoped<ICommentService, CommentManager>();
-			builder.Services.AddScoped<ICommentDal, EfCommentDal>();
+			builder.Services.ContainerDependencies();
 
-			builder.Services.AddScoped<IDestinationService, DestinationManager>();
-			builder.Services.AddScoped<IDestinationDal, EfDestinationDal>();
 
-			//Identity  End
+            //Identity  End
 
-			builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 			//Identity Authorization Project Level
 			builder.Services.AddMvc(config =>
@@ -77,15 +76,6 @@ namespace ReservationApp.Panel.UI
 				  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
 				);
 			});
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                  name: "areas",
-                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-                );
-            });
-
 
             app.Run();
 		}

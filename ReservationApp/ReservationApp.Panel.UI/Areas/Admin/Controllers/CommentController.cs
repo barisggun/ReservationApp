@@ -25,7 +25,7 @@ namespace ReservationApp.Panel.UI.Areas.Admin.Controllers
         {
             var values = _commentService.TGetById(id);
             _commentService.TDelete(values);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Comment", new { area = "Admin" });
         }
     }
 }
