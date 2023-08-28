@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    int sayac = 0;
+    int count = 0;
 }
 
 <h1>Kullanıcılar</h1>
@@ -22,8 +22,8 @@
     @foreach (var item in Model)
     {
         <tr>
-            @{sayac = sayac + 1;}
-            <td>@sayac</td>
+            @{count = count + 1;}
+            <td>@count</td>
             <td>@item.Name  @item.Surname</td>
             <td>@item.UserName</td>
             <td>@item.Email</td>

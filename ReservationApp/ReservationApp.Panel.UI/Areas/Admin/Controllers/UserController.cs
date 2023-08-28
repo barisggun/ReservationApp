@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Abstract;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ReservationApp.Panel.UI.Areas.Admin.Controllers
@@ -8,10 +9,14 @@ namespace ReservationApp.Panel.UI.Areas.Admin.Controllers
     public class UserController : Controller
     {
         private readonly IAppUserService _appUserService;
+        private readonly IReservationService _reservationService;
+        private readonly UserManager<AppUser> _userManager;
 
-        public UserController(IAppUserService userService)
+        public UserController(IAppUserService appUserService, IReservationService reservationService, UserManager<AppUser> userManager)
         {
-            _appUserService = userService;
+            _appUserService = appUserService;
+            _reservationService = reservationService;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -46,10 +51,12 @@ namespace ReservationApp.Panel.UI.Areas.Admin.Controllers
             return View();
         }
 
-        public IActionResult ReservationUser(int id)
+        public async Task<IActionResult> ReservationUser(int id)
         {
-            _appUserService.TGetList();
-            return View();
+            var valuesName = await _userManager.FindByNameAsync(User.Identity.Name);
+            ViewBag.userName = valuesName.Name + " " + valuesName.Surname;
+            var values = _reservationService.GetListWithReservationByAccepted(id);
+            return View(values);
         }
     }
 }

@@ -54,6 +54,9 @@ namespace ReservationApp.Panel.UI
 				app.UseHsts();
 			}
 
+			//404 error page
+			app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404","?code={0}");
+
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 
