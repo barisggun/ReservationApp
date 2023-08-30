@@ -27,6 +27,14 @@ namespace ReservationApp.Panel.UI
 
 			builder.Services.ContainerDependencies();
 
+			//Loglama
+			builder.Services.AddLogging(x =>
+			{
+				x.ClearProviders();
+				x.SetMinimumLevel(LogLevel.Debug);
+				x.AddDebug();
+
+			});
 
             //Identity  End
 

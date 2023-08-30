@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
 }
 
 <h1>Rehber Listesi</h1>
@@ -18,15 +19,28 @@
      </tr
      @foreach (var item in Model)
     {
+        count++;
         <tr>
-            <td>@item.GuideID</td>
-            <td><img src="@item.Image"/></td>
+            <td>@count</td>
+            <td><img src="@item.Image" style="width:50px;height:50px;"/></td>
             <td>@item.Name</td>
             <td>@item.Description</td>
-            <td>@item.Status</td>
+
+                @{
+                    if (item.Status == true)
+                    {
+                        <td><a href="#" class="btn btn-outline-warning">Pasif yap</a></td>
+                    }
+                    else
+                    {
+                        <td><a href="#" class="btn btn-outline-info">Aktif yap</a></td>
+                    }
+                }
+
+
             <td><a href="#" class="btn btn-outline-success">Düzenle</a></td>
         </tr>
     }
 </table>
 
-<a href="#" class="btn btn-outline-primary">Yeni rehber oluştur</a>
+<a href="/Admin/Guide/AddGuide/" class="btn btn-outline-primary">Yeni rehber oluştur</a>
