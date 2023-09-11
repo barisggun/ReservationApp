@@ -396,3 +396,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/ReservationApp/ReservationApp.Panel.UI/Areas/Admin/Controllers/MailController.cs
