@@ -1,0 +1,26 @@
+﻿@model ReservationApp.Panel.UI.Models.MailRequest
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h3>Mail gönderme sayfası</h3>
+
+<form method="post">
+    <div class="form-group">
+        @Html.Label("Alıcı mail adresi")
+        <input type="email" asp-for="RecieverMail" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Konu başlığı")
+        <input type="text" asp-for="Subject" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Mesaj")
+       <textarea cols="30" rows="5" class="form-control" asp-for="Body"></textarea>
+    </div>
+    <br />
+    <br />
+    <button class="btn btn-outline-primary">Mail gönder</button>
+</form>

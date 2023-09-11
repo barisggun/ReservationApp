@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ReservationApp.Panel.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Route("Admin/[controller]/[action]")]
+    [Route("Admin/Guide")]
     public class GuideController : Controller
     {
         private readonly IGuideService _guideService;
@@ -17,18 +17,20 @@ namespace ReservationApp.Panel.UI.Areas.Admin.Controllers
             _guideService = guideService;
         }
 
+        [Route("Index")]
         public IActionResult Index()
         {
             var values = _guideService.TGetList();
             return View(values);
         }
-
+        [Route("AddGuide")]
         public IActionResult AddGuide()
         {
             return View();
         }
 
         [HttpPost]
+        [Route("AddGuide")]
         public IActionResult AddGuide(Guide guide)
         {
             GuideValidator validationRules = new GuideValidator();
@@ -48,7 +50,7 @@ namespace ReservationApp.Panel.UI.Areas.Admin.Controllers
             }
 
         }
-
+        [Route("EditGuide/{id}")]
         public IActionResult EditGuide(int id)
         {
             var values = _guideService.TGetById(id);
@@ -56,19 +58,24 @@ namespace ReservationApp.Panel.UI.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [Route("EditGuide/{id}")]
         public IActionResult EditGuide(Guide guide)
         {
             _guideService.TUpdate(guide);
             return RedirectToAction("Index");
         }
 
+        [Route("ChangeToTrue/{id}")]
         public IActionResult ChangeToTrue(int id)
         {
+            _guideService.TChangeToTrueByGuide(id);
             return RedirectToAction("Index");
         }
 
+        [Route("ChangeToFalse/{id}")]
         public IActionResult ChangeToFalse(int id)
         {
+            _guideService.TChangeToFalseByGuide(id);
             return RedirectToAction("Index");
         }
     }
